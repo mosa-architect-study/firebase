@@ -13,8 +13,9 @@ store.collection("vistors").doc("history").set({
 //
 export const visit = functions.region("asia-northeast1").https.onRequest((request, response) => {
 
+    response.header('Access-Control-Allow-Origin', "*");
+    response.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     const history = store.collection("vistors").doc("history")
-    
     history.get().then(e => {
         const data = e.data();
         if(data){
