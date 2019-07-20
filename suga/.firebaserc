@@ -1,6 +1,7 @@
 {
   "projects": {
     "staging": "sugatest-a98ce",
-    "master": "master-ad28c"
+    "master": "master-ad28c",
+    "default": "sugatest-a98ce"
   }
 }
