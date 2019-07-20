@@ -7,15 +7,11 @@ const createFirestore = () => {
         const store = testing.initializeAdminApp({
             projectId:"haga-number-of-vistors"
         }).firestore()
-        // store.collection("vistors").doc("history").set({
-        //     count:0
-        // })
         return store
     } else {
         admin.initializeApp()
         return admin.firestore();
     }
-   
 }
 
 const store = createFirestore()

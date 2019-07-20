@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mockstore": "firebase serve --only firestore",
-    "mockdata": "node init-mock-firestore",
-    "func":"firebase emulators:start --only functions",
-    "setup":"firebase setup:emulators:firestore"
+    "store-setup": "firebase setup:emulators:firestore",
+    "store-emu": "firebase serve --only firestore",
+    "store-init": "node init-mock-firestore",
+    "func-watch": "cd ./func-app && npm run watch",
+    "func-emu": "firebase emulators:start --only functions"
   },
   "author": "",
   "license": "ISC",
