@@ -6,5 +6,15 @@
   </head>
   <body>
     <h2>芳賀のページ</h2>
+    <div id="app">
+
+    </div>
+    <script>
+      fetch("https://asia-northeast1-haga-number-of-vistors.cloudfunctions.net/visit").then(e => e.json())
+        .then(e =>{
+          const app = document.getElementById("app")
+          app.textContent = `あなたは ${e.count} 人目の訪問者です。`
+        })
+    </script>
   </body>
 </html>

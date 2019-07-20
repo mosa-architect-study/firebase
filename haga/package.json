@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mockstore": "firebase serve --only firestore",
+    "mockdata": "node init-mock-firestore",
+    "func":"firebase emulators:start --only functions",
+    "setup":"firebase setup:emulators:firestore"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase-tools": "^7.1.1"
+    "@firebase/testing": "^0.11.6",
+    "firebase-tools": "^7.0.0"
   }
 }
