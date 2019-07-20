@@ -8,8 +8,9 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/timestamp",
         "destination": "/index.html",
+        "function": "app"
       }
     ]
   },
