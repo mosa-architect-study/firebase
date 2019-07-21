@@ -4,15 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mockstore": "firebase serve --only firestore",
-    "mockdata": "node init-mock-firestore",
-    "func":"firebase emulators:start --only functions",
-    "setup":"firebase setup:emulators:firestore"
+    "install-all": "npm i; npm --prefix ./func-app i ./func-app; npm --prefix ./view-app i ./view-app;",
+    "store-setup": "firebase setup:emulators:firestore",
+    "tsc-watch": "concurrently 'npm --prefix ./func-app run watch' 'npm --prefix ./view-app run watch'",
+    "serve": "firebase serve --only firestore,functions,hosting",
+    "store-init": "node init-mock-firestore",
+    "deploy":"firebase deploy --only firestore,functions,hosting"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@firebase/testing": "^0.11.6",
     "firebase-tools": "^7.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1"
   }
 }
