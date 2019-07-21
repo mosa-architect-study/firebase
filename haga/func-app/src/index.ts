@@ -1,11 +1,14 @@
 import * as functions from 'firebase-functions';
 import *  as admin from 'firebase-admin';
 import * as testing from "@firebase/testing"
+import * as express from "express"
+
+const app = express();
 
 const createFirestore = () => {
     if (process.env.FUNCTIONS_EMULATOR) {
         const store = testing.initializeAdminApp({
-            projectId:"haga-number-of-vistors"
+            projectId:"testes"
         }).firestore()
         return store
     } else {
@@ -13,13 +16,10 @@ const createFirestore = () => {
         return admin.firestore();
     }
 }
-
 const store = createFirestore()
 
-export const visit = functions.region("asia-northeast1").https.onRequest(async (request, response) => {
+app.get("/functions/visit",async (_,res)=>{
 
-    response.header('Access-Control-Allow-Origin', "*");
-    response.header('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept");
     const history = store.collection("vistors").doc("history")
 
     const e = await history.get();
@@ -28,9 +28,13 @@ export const visit = functions.region("asia-northeast1").https.onRequest(async (
         history.set({
             count:data.count + 1
         })
-        response.json(e.data())
+        res.json(e.data())
     } else {
-        response.send("Data Not Found")
+        res.json({
+            message:"Err! Data Not Found"
+        })
     }
+})
 
-});
+
+export const api = functions.https.onRequest(app);
